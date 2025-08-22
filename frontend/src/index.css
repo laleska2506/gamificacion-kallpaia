@@ -1,0 +1,756 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* ==========================================================================
+   KallpaIA • Design System (CSS plano)
+   Paleta DARK + Glass + Gradients + Composables para Cards/Quiz/Hero
+   Versión: 1.0
+   ========================================================================== */
+
+/* ------------------------------- Root Tokens ------------------------------ */
+:root {
+  /* Base - Tema Espacial/Galáctico */
+  --bg: #000000; /* Negro profundo del espacio */
+  --bg-secondary: #0A0A0A; /* Negro secundario para capas */
+  --text: #FFFFFF; /* Blanco puro como estrellas */
+  --text-2: #FBBF24; /* Amarillo dorado para subtítulos */
+  --text-3: #F59E0B; /* Dorado para acentos */
+
+  /* Brand / Accents - Colores Espaciales */
+  --brand-1: #F59E0B; /* Dorado principal del sol */
+  --brand-2: #FBBF24; /* Amarillo brillante de estrellas */
+  --brand-3: #FCD34D; /* Amarillo suave de nebulosas */
+  --accent-gold: #D97706; /* Dorado oscuro para hover */
+  
+  /* STEM Categories - Colores Espaciales */
+  --math-yellow: #F59E0B; /* Amarillo dorado para matemáticas */
+  --science-gold: #FBBF24; /* Amarillo brillante para ciencia */
+  --engineering-orange: #EA580C; /* Naranja dorado para ingeniería */
+  --art-amber: #F59E0B; /* Ámbar para arte */
+  --tech-gold: #FCD34D; /* Dorado suave para tecnología */
+
+  /* Glass & Borders - Estilo Espacial */
+  --glass: rgba(15, 15, 15, 0.95); /* Negro espacial con transparencia */
+  --glass-light: rgba(30, 30, 30, 0.8); /* Glass más claro para hover */
+  --border: #F59E0B; /* Borde dorado como estrellas */
+  --border-strong: #FBBF24; /* Borde dorado brillante en hover */
+  --border-glow: rgba(251, 191, 36, 0.3); /* Glow dorado sutil */
+
+  /* Effects - Efectos Espaciales */
+  --shadow-glow: 0 8px 25px rgba(251, 191, 36, 0.4); /* Glow dorado espacial */
+  --shadow-neon: 0 0 20px rgba(251, 191, 36, 0.6); /* Efecto neón dorado */
+  --radius-lg: 24px;
+  --radius-md: 16px;
+  --radius-sm: 12px;
+  --blur: 20px;
+
+  /* Sizing */
+  --container: 1200px;
+
+  /* Typography - Fuentes Espaciales */
+  --font-title: "Poppins", "Nunito Sans", system-ui, -apple-system, Segoe UI, Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif;
+  --font-body: "Inter", system-ui, -apple-system, Segoe UI, Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif;
+
+  /* Animation - Movimientos Espaciales */
+  --ease: cubic-bezier(.2,.8,.2,1);
+  --dur: .4s;
+  --dur-slow: .8s;
+}
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+  }
+  
+  body {
+    font-family: var(--font-body);
+    background-color: var(--bg);
+    color: var(--text);
+    line-height: 1.55;
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
+  }
+
+  /* Mejor contraste de focos */
+  :focus-visible {
+    outline: 2px solid var(--brand-2);
+    outline-offset: 2px;
+  }
+}
+
+@layer components {
+  .text-gradient {
+    background: linear-gradient(90deg, var(--brand-1), var(--brand-2));
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+  }
+
+  .btn-primary {
+    background: linear-gradient(90deg, var(--brand-1), var(--brand-2));
+    color: #fff;
+    font-weight: 700;
+    padding: 12px 20px;
+    border-radius: var(--radius-md);
+    border: none;
+    cursor: pointer;
+    transition: transform var(--dur) var(--ease), box-shadow var(--dur) var(--ease), background var(--dur) var(--ease);
+    will-change: transform;
+  }
+
+  .btn-primary:hover {
+    background: linear-gradient(90deg, var(--brand-2), var(--brand-1));
+    box-shadow: 0 0 16px rgba(124, 58, 237, 0.5);
+    transform: translateY(-1px);
+  }
+
+  .btn-outline {
+    background: transparent;
+    color: var(--text);
+    border: 1px solid var(--border);
+    font-weight: 700;
+    padding: 12px 20px;
+    border-radius: var(--radius-md);
+    cursor: pointer;
+    transition: transform var(--dur) var(--ease), border-color var(--dur) var(--ease), background var(--dur) var(--ease);
+  }
+
+  .btn-outline:hover {
+    border-color: var(--border-strong);
+    background: rgba(255, 255, 255, 0.04);
+    transform: translateY(-1px);
+  }
+
+  .game-card {
+    background: var(--glass);
+    border: 1px solid var(--border);
+    backdrop-filter: blur(var(--blur));
+    border-radius: var(--radius-lg);
+    padding: 20px;
+    transition: transform var(--dur) var(--ease), box-shadow var(--dur) var(--ease), border-color var(--dur) var(--ease);
+  }
+
+  .game-card:hover {
+    transform: translateY(-4px);
+    box-shadow: var(--shadow-glow);
+    border-color: var(--border-strong);
+  }
+
+  .progress {
+    height: 10px;
+    border-radius: var(--radius-sm);
+    background: rgba(255, 255, 255, 0.08);
+    overflow: hidden;
+    position: relative;
+  }
+
+  .progress-fill {
+    height: 100%;
+    background: linear-gradient(90deg, var(--math-yellow), var(--brand-1));
+    border-radius: var(--radius-sm);
+    transition: width .4s var(--ease);
+  }
+
+  /* Badges para categorías STEM - Colores exactos de la imagen */
+  .badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    font-weight: 700;
+    font-size: 12px;
+    padding: 6px 10px;
+    border-radius: 999px;
+    border: 1px solid var(--border);
+    background: rgba(255,255,255,0.06);
+    color: var(--text);
+  }
+
+  .badge--math { 
+    background: rgba(245,158,11, .8);  /* Amarillo matemáticas */
+    border-color: rgba(245,158,11,.9);  
+    color: #fff; 
+  }
+  .badge--science { 
+    background: rgba(139,92,246, .8);  /* Púrpura ciencia */
+    border-color: rgba(139,92,246,.9);  
+    color: #fff; 
+  }
+  .badge--engineering { 
+    background: rgba(245,158,11, .8);  /* Amarillo ingeniería */
+    border-color: rgba(245,158,11,.9);  
+    color: #fff; 
+  }
+  .badge--art { 
+    background: rgba(236,72,153,.8);  /* Rosa arte */
+    border-color: rgba(236,72,153,.9); 
+    color: #fff; 
+  }
+  .badge--tech { 
+    background: rgba(59,130,246,.8);  /* Azul tecnología */
+    border-color: rgba(59,130,246,.9);  
+    color: #fff; 
+  }
+
+  /* Ring sutil para categorías */
+  .ring--math { 
+    box-shadow: 0 0 0 1px rgba(234,179,8,.45) inset; 
+  }
+  .ring--science { 
+    box-shadow: 0 0 0 1px rgba(34,197,94,.45) inset; 
+  }
+  .ring--engineering { 
+    box-shadow: 0 0 0 1px rgba(34,197,94,.45) inset; 
+  }
+  .ring--art { 
+    box-shadow: 0 0 0 1px rgba(236,72,153,.45) inset; 
+  }
+  .ring--tech { 
+    box-shadow: 0 0 0 1px rgba(59,130,246,.45) inset; 
+  }
+
+  /* Container y secciones */
+  .container {
+    width: 100%;
+    max-width: var(--container);
+    margin-inline: auto;
+    padding: 24px;
+  }
+
+  .section {
+    padding: clamp(48px, 6vw, 96px) 0;
+  }
+
+  /* Tipografía */
+  .h1, h1 {
+    font-family: var(--font-title);
+    font-weight: 800;
+    font-size: clamp(32px, 4vw, 56px);
+    line-height: 1.1;
+    margin: 0 0 12px;
+  }
+  .h2, h2 {
+    font-family: var(--font-title);
+    font-weight: 700;
+    font-size: clamp(24px, 3vw, 36px);
+    line-height: 1.15;
+    margin: 0 0 8px;
+  }
+  .lead {
+    color: var(--text-2);
+    font-size: clamp(16px, 1.4vw, 18px);
+    max-width: 70ch;
+  }
+
+  /* Stars overlay para fondo - Tema Espacial/Galáctico */
+  .stars-overlay {
+    position: fixed;
+    inset: 0;
+    pointer-events: none;
+    background-image:
+      /* Estrellas brillantes doradas */
+      radial-gradient(3px 3px at 10% 20%, rgba(251,191,36,.8) 0, transparent 60%),
+      radial-gradient(2px 2px at 80% 80%, rgba(245,158,11,.7) 0, transparent 50%),
+      radial-gradient(2px 2px at 60% 10%, rgba(251,191,36,.6) 0, transparent 50%),
+      radial-gradient(1px 1px at 20% 90%, rgba(245,158,11,.5) 0, transparent 50%),
+      
+      /* Estrellas medianas amarillas */
+      radial-gradient(2px 2px at 40% 40%, rgba(251,191,36,.6) 0, transparent 50%),
+      radial-gradient(2px 2px at 70% 30%, rgba(245,158,11,.5) 0, transparent 50%),
+      radial-gradient(1px 1px at 30% 70%, rgba(251,191,36,.4) 0, transparent 50%),
+      radial-gradient(1px 1px at 90% 60%, rgba(245,158,11,.4) 0, transparent 50%),
+      
+      /* Estrellas pequeñas doradas */
+      radial-gradient(1px 1px at 15% 50%, rgba(251,191,36,.5) 0, transparent 40%),
+      radial-gradient(1px 1px at 85% 15%, rgba(245,158,11,.4) 0, transparent 40%),
+      radial-gradient(1px 1px at 50% 85%, rgba(251,191,36,.3) 0, transparent 40%),
+      radial-gradient(1px 1px at 75% 45%, rgba(245,158,11,.3) 0, transparent 40%),
+      
+      /* Nebulosas doradas sutiles */
+      radial-gradient(100px 100px at 25% 25%, rgba(251,191,36,.05) 0, transparent 70%),
+      radial-gradient(80px 80px at 75% 75%, rgba(245,158,11,.04) 0, transparent 60%);
+    
+    opacity: 1;
+    z-index: 0;
+    animation: twinkle 8s ease-in-out infinite;
+  }
+
+  /* Animación de parpadeo de estrellas */
+  @keyframes twinkle {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.7; }
+  }
+
+  /* Estrellas animadas individuales */
+  .star {
+    position: absolute;
+    width: 2px;
+    height: 2px;
+    background: var(--brand-2);
+    border-radius: 50%;
+    animation: star-twinkle 3s ease-in-out infinite;
+  }
+
+  .star:nth-child(1) { top: 15%; left: 20%; animation-delay: 0s; }
+  .star:nth-child(2) { top: 25%; left: 80%; animation-delay: 0.5s; }
+  .star:nth-child(3) { top: 45%; left: 15%; animation-delay: 1s; }
+  .star:nth-child(4) { top: 65%; left: 85%; animation-delay: 1.5s; }
+  .star:nth-child(5) { top: 85%; left: 25%; animation-delay: 2s; }
+
+  @keyframes star-twinkle {
+    0%, 100% { 
+      opacity: 1; 
+      transform: scale(1);
+      box-shadow: 0 0 4px var(--brand-2);
+    }
+    50% { 
+      opacity: 0.3; 
+      transform: scale(0.8);
+      box-shadow: 0 0 2px var(--brand-2);
+    }
+  }
+
+  /* Kallpa Cards - Estilo Espacial/Galáctico */
+  .kallpa-card {
+    background: var(--glass);
+    border: 2px solid var(--border);
+    border-radius: var(--radius-lg);
+    padding: 28px;
+    transition: all var(--dur) var(--ease);
+    cursor: pointer;
+    position: relative;
+    overflow: hidden;
+    min-height: 520px;
+    display: flex;
+    flex-direction: column;
+    backdrop-filter: blur(var(--blur));
+    isolation: isolate; /* para brillos */
+  }
+
+  .kallpa-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 4px;
+    background: linear-gradient(90deg, var(--brand-1), var(--brand-2), var(--brand-3));
+    opacity: 0;
+    transition: opacity var(--dur) var(--ease);
+  }
+
+  .kallpa-card:hover::before {
+    opacity: 1;
+  }
+
+  .kallpa-card:hover {
+    transform: translateY(-12px) scale(1.015);
+    box-shadow: var(--shadow-glow), var(--shadow-neon);
+    border-color: var(--border-strong);
+    background: var(--glass-light);
+  }
+
+  /* Brillo diagonal animado */
+  .kallpa-card::after {
+    content: '';
+    position: absolute;
+    inset: -150% -50% auto -50%;
+    height: 200%;
+    background: linear-gradient(105deg, transparent 40%, rgba(255,255,255,.08) 50%, transparent 60%);
+    transform: translateY(-60%) rotate(12deg);
+    opacity: 0;
+    transition: opacity var(--dur) var(--ease), transform var(--dur) var(--ease);
+    pointer-events: none;
+    z-index: 1;
+  }
+
+  .kallpa-card:hover::after {
+    opacity: 1;
+    transform: translateY(-20%) rotate(12deg);
+  }
+
+  /* Cinta/acento superior izquierdo */
+  .kallpa-card__ribbon {
+    position: absolute;
+    top: 14px;
+    left: 14px;
+    padding: 6px 10px;
+    border-radius: 999px;
+    font-size: 12px;
+    font-weight: 700;
+    color: #111;
+    background: linear-gradient(90deg, var(--brand-3), var(--brand-1));
+    box-shadow: 0 2px 8px rgba(251,191,36,.25);
+    z-index: 2;
+  }
+
+  /* Marca de agua grande */
+  .kallpa-card__watermark {
+    position: absolute;
+    top: 8px;
+    right: 16px;
+    font-size: 72px;
+    opacity: .08;
+    filter: drop-shadow(0 0 6px rgba(251,191,36,.25));
+    pointer-events: none;
+    z-index: 0;
+  }
+
+  /* Categorías STEM con colores espaciales */
+  .kallpa-card.math {
+    border-color: var(--math-yellow);
+    background: linear-gradient(135deg, var(--glass), rgba(245, 158, 11, 0.08));
+    box-shadow: 0 0 20px rgba(245, 158, 11, 0.1);
+  }
+
+  .kallpa-card.engineering {
+    border-color: var(--engineering-orange);
+    background: linear-gradient(135deg, var(--glass), rgba(234, 88, 12, 0.08));
+    box-shadow: 0 0 20px rgba(234, 88, 12, 0.1);
+  }
+
+  .kallpa-card.tech {
+    border-color: var(--tech-gold);
+    background: linear-gradient(135deg, var(--glass), rgba(252, 211, 77, 0.08));
+    box-shadow: 0 0 20px rgba(252, 211, 77, 0.1);
+  }
+
+  .kallpa-card.science {
+    border-color: var(--science-gold);
+    background: linear-gradient(135deg, var(--glass), rgba(251, 191, 36, 0.08));
+    box-shadow: 0 0 20px rgba(251, 191, 36, 0.1);
+  }
+
+  .kallpa-card.art {
+    border-color: var(--art-amber);
+    background: linear-gradient(135deg, var(--glass), rgba(245, 158, 11, 0.08));
+    box-shadow: 0 0 20px rgba(245, 158, 11, 0.1);
+  }
+
+  /* Texturas temáticas por tarjeta (SVG data-uri superpuesto) */
+  /* Invento Verde: patrón de hojas sutil */
+  .kallpa-card--eco {
+    background-image:
+      url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='120' viewBox='0 0 120 120'%3E%3Cg fill='none' stroke='%23FBBF24' stroke-opacity='0.12' stroke-width='1.2'%3E%3Cpath d='M20 70c20-28 42-12 62-40M10 90c22-26 54-8 78-44'/%3E%3Cpath d='M54 84c10-14 22-6 32-20M34 102c12-16 30-6 46-28'/%3E%3C/g%3E%3C/svg%3E");
+    background-repeat: repeat;
+    background-blend-mode: overlay;
+  }
+
+  /* Puente Roto: blueprint de líneas estructurales */
+  .kallpa-card--civil {
+    background-image:
+      linear-gradient(transparent, transparent),
+      url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160' viewBox='0 0 160 160'%3E%3Cg fill='none' stroke='%23F59E0B' stroke-opacity='0.10' stroke-width='1'%3E%3Cpath d='M0 120 L160 120M0 80 L160 80M0 40 L160 40'/%3E%3Cpath d='M20 160 L20 0M60 160 L60 0M100 160 L100 0M140 160 L140 0'/%3E%3Cpath d='M0 140 C40 100 120 100 160 140'/%3E%3C/g%3E%3C/svg%3E");
+    background-repeat: repeat;
+    background-blend-mode: overlay;
+  }
+
+  /* Exploradora Espacial: trazas tipo circuito/órbitas */
+  .kallpa-card--tech-circuit {
+    background-image:
+      url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='140' height='140' viewBox='0 0 140 140'%3E%3Cg fill='none' stroke='%23FCD34D' stroke-opacity='0.12' stroke-width='1.2'%3E%3Ccircle cx='70' cy='70' r='28'/%3E%3Ccircle cx='70' cy='70' r='52'/%3E%3Cpath d='M10 20 L50 60 M90 20 L50 60 M90 120 L50 80'/%3E%3C/g%3E%3C/svg%3E");
+    background-repeat: repeat;
+    background-blend-mode: overlay;
+  }
+
+  .kallpa-card__header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 16px;
+  }
+
+  .kallpa-card__category {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 8px 12px;
+    border-radius: 999px;
+    font-weight: 700;
+    font-size: 14px;
+    color: white;
+  }
+
+  .kallpa-card__category.math { background: rgba(245,158,11, .8); }
+  .kallpa-card__category.science { background: rgba(139,92,246, .8); }
+  .kallpa-card__category.engineering { background: rgba(245,158,11, .8); }
+  .kallpa-card__category.art { background: rgba(236,72,153, .8); }
+  .kallpa-card__category.tech { background: rgba(59,130,246, .8); }
+
+  .kallpa-card__avatar {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-bottom: 12px;
+    color: var(--stem-green);
+    font-size: 16px;
+  }
+
+  .kallpa-card__name {
+    font-weight: 800;
+    font-size: 20px;
+    color: white;
+    margin-bottom: 4px;
+  }
+
+  .kallpa-card__person {
+    color: var(--text-2);
+    font-size: 14px;
+    font-weight: 500;
+  }
+
+  .kallpa-card__progress {
+    display: flex;
+    gap: 6px;
+    margin-top: 16px;
+  }
+
+  .kallpa-card__dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: rgba(255,255,255,.25);
+    transition: background var(--dur) var(--ease);
+  }
+
+  .kallpa-card__dot.active {
+    background: var(--brand-1);
+  }
+
+  /* Botón principal dorado como en la imagen */
+  .btn-kallpa {
+    background: var(--brand-1);
+    color: white;
+    font-weight: 700;
+    font-size: 18px;
+    padding: 16px 32px;
+    border-radius: var(--radius-md);
+    border: none;
+    cursor: pointer;
+    transition: all var(--dur) var(--ease);
+    box-shadow: 0 4px 12px rgba(245,158,11,0.3);
+  }
+
+  .btn-kallpa:hover {
+    background: #D97706;
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(245,158,11,0.4);
+  }
+
+  /* Estadísticas del juego */
+  .game-stats {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 12px;
+    margin-bottom: 24px;
+  }
+
+  .game-stat {
+    text-align: center;
+    padding: 16px 12px;
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: var(--radius-md);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    transition: all var(--dur) var(--ease);
+  }
+
+  .game-stat:hover {
+    background: rgba(255, 255, 255, 0.08);
+    border-color: rgba(255, 255, 255, 0.2);
+    transform: translateY(-2px);
+  }
+
+  .game-stat__icon {
+    font-size: 24px;
+    margin-bottom: 8px;
+    display: block;
+  }
+
+  .game-stat__label {
+    font-size: 11px;
+    color: rgba(255, 255, 255, 0.6);
+    margin-bottom: 4px;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+  }
+
+  .game-stat__value {
+    font-size: 14px;
+    font-weight: 600;
+    color: white;
+  }
+
+  /* Habilidades evaluadas */
+  .skills-section {
+    margin-bottom: 24px;
+  }
+
+  .skills-title {
+    font-size: 13px;
+    font-weight: 600;
+    color: rgba(255, 255, 255, 0.8);
+    margin-bottom: 12px;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+  }
+
+  .skill-tag {
+    display: inline-block;
+    padding: 6px 12px;
+    background: rgba(255, 255, 255, 0.1);
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    border-radius: 999px;
+    font-size: 11px;
+    color: rgba(255, 255, 255, 0.8);
+    margin: 2px;
+    transition: all var(--dur) var(--ease);
+  }
+
+  .skill-tag:hover {
+    background: rgba(255, 255, 255, 0.15);
+    border-color: rgba(255, 255, 255, 0.25);
+    transform: translateY(-1px);
+  }
+
+  /* Botón de juego mejorado - Tema Espacial */
+  .game-play-button {
+    width: 100%;
+    background: linear-gradient(90deg, var(--brand-1), var(--brand-2), var(--brand-3));
+    color: white;
+    font-weight: 700;
+    padding: 18px 28px;
+    border-radius: var(--radius-md);
+    border: none;
+    cursor: pointer;
+    transition: all var(--dur) var(--ease);
+    font-size: 16px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+    margin-top: auto;
+    box-shadow: 0 4px 15px rgba(245, 158, 11, 0.4);
+    position: relative;
+    overflow: hidden;
+  }
+
+  .game-play-button::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+    transition: left var(--dur-slow) var(--ease);
+  }
+
+  .game-play-button:hover::before {
+    left: 100%;
+  }
+
+  .game-play-button:hover {
+    background: linear-gradient(90deg, var(--brand-3), var(--brand-1), var(--brand-2));
+    transform: translateY(-3px);
+    box-shadow: var(--shadow-glow), var(--shadow-neon);
+  }
+
+  .game-play-button__icon {
+    font-size: 20px;
+    transition: transform var(--dur) var(--ease);
+    z-index: 1;
+  }
+
+  .game-play-button:hover .game-play-button__icon {
+    transform: scale(1.2) rotate(5deg);
+  }
+
+  /* Botones principales con tema espacial */
+  .btn-primary {
+    background: linear-gradient(90deg, var(--brand-1), var(--brand-2));
+    color: white;
+    font-weight: 700;
+    padding: 14px 24px;
+    border-radius: var(--radius-md);
+    border: none;
+    cursor: pointer;
+    transition: all var(--dur) var(--ease);
+    box-shadow: 0 4px 15px rgba(245, 158, 11, 0.3);
+    position: relative;
+    overflow: hidden;
+  }
+
+  .btn-primary:hover {
+    background: linear-gradient(90deg, var(--brand-2), var(--brand-1));
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-glow);
+  }
+
+  .btn-primary::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.1), transparent);
+    transition: left var(--dur-slow) var(--ease);
+  }
+
+  .btn-primary:hover::before {
+    left: 100%;
+  }
+
+  /* Texto con gradiente espacial */
+  .text-gradient {
+    background: linear-gradient(90deg, var(--brand-1), var(--brand-2), var(--brand-3));
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+    animation: gradient-shift 4s ease-in-out infinite;
+  }
+
+  @keyframes gradient-shift {
+    0%, 100% { filter: hue-rotate(0deg); }
+    50% { filter: hue-rotate(10deg); }
+  }
+
+  /* Efectos de partículas espaciales */
+  .space-particles {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    overflow: hidden;
+  }
+
+  .particle {
+    position: absolute;
+    width: 2px;
+    height: 2px;
+    background: var(--brand-2);
+    border-radius: 50%;
+    animation: float 6s ease-in-out infinite;
+  }
+
+  .particle:nth-child(1) { left: 10%; animation-delay: 0s; animation-duration: 8s; }
+  .particle:nth-child(2) { left: 30%; animation-delay: 2s; animation-duration: 10s; }
+  .particle:nth-child(3) { left: 50%; animation-delay: 4s; animation-duration: 7s; }
+  .particle:nth-child(4) { left: 70%; animation-delay: 1s; animation-duration: 9s; }
+  .particle:nth-child(5) { left: 90%; animation-delay: 3s; animation-duration: 6s; }
+
+  @keyframes float {
+    0%, 100% { 
+      transform: translateY(100vh) scale(0);
+      opacity: 0;
+    }
+    10% { 
+      opacity: 1;
+      transform: translateY(90vh) scale(1);
+    }
+    90% { 
+      opacity: 1;
+      transform: translateY(10vh) scale(1);
+    }
+  }
+}

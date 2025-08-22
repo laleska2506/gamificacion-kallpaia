@@ -1,0 +1,27 @@
+{
+  "name": "kallpaia-backend",
+  "version": "1.0.0",
+  "description": "Backend para la plataforma de gamificación STEM KallpaIA",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js",
+    "dev": "nodemon server.js",
+    "setup-db": "node scripts/setup-database.js"
+  },
+  "dependencies": {
+    "express": "^4.18.2",
+    "cors": "^2.8.5",
+    "helmet": "^7.1.0",
+    "dotenv": "^16.3.1",
+    "pg": "^8.11.3",
+    "uuid": "^9.0.1",
+    "express-rate-limit": "^7.1.5",
+    "express-validator": "^7.0.1"
+  },
+  "devDependencies": {
+    "nodemon": "^3.0.2"
+  },
+  "keywords": ["express", "postgresql", "gamification", "stem"],
+  "author": "KallpaIA Team",
+  "license": "MIT"
+}
